@@ -52,7 +52,7 @@ class Leaderboard extends Component {
                       </p>
                     </div>
                     <div className="p-col-6 p-d-flex p-ai-center">
-                      <span className="p-badge p-badge-xl p-badge-sucess p-ml-auto">{calcScore(user)}</span>
+                      <span className="p-badge p-badge-xl p-badge-primary p-ml-auto">{calcScore(user)}</span>
                     </div>
                   </div>
               </div>
