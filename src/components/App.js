@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import Questions from './Questions'
@@ -13,6 +13,9 @@ import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
 
+const PageNotFound = ({ location }) => (
+  <h3>404! This is not the page you're looking for: <code>{location.pathname}</code></h3>
+)
 
 class App extends Component {
   componentDidMount() {
@@ -28,10 +31,13 @@ class App extends Component {
             {this.props.loading === true 
               ? null
               : <div className="p-d-flex p-jc-center">
-                  <Route path='/' exact component={Questions} />
-                  <Route path='/questions/:id' component={Question} />
-                  <Route path='/add' exact component={AddQuestion} />
-                  <Route path='/leaderboard' exact component={Leaderboard} />
+                  <Switch>
+                    <Route path='/' exact component={Questions} />
+                    <Route path='/questions/:id' component={Question} />
+                    <Route path='/add' component={AddQuestion} />
+                    <Route path='/leaderboard' component={Leaderboard} />
+                    <Route component={PageNotFound} />
+                  </Switch>
                 </div>
             }
           </div>
