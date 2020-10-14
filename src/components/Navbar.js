@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { TabMenu } from 'primereact/tabmenu'
+import { Menubar } from 'primereact/menubar'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class Navbar extends Component {
   constructor(props) {
@@ -30,10 +31,19 @@ class Navbar extends Component {
     ]
   }
   render () {
+    const start = <img alt="logo" src="/logo.png" height="40" className="p-mr-2"></img>;
+    const end = this.props.username 
+      && <span className="p-text-bold">{'Hello, ' + this.props.username}</span>;
+
     return (
-      <TabMenu model={this.items} />
+      <Menubar model={this.items} start={start} end={end} />
     )
   }
 }
 
-export default withRouter(Navbar)
+export default withRouter(connect((state) =>
+  ({
+    username: state.authedUser !== null 
+      ? state.users[state.authedUser].name 
+      : null
+  }))(Navbar))
