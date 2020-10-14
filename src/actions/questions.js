@@ -53,7 +53,6 @@ export function handleAddAnswer (qid, answer) {
       answer,
     }
 
-    return saveAnswer(info)
-    .then(() => dispatch(addAnswer(info)))
+    return saveAnswer(info).then(() => dispatch(addAnswer(info)))
   }
 }
