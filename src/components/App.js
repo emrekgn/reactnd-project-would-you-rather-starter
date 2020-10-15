@@ -7,6 +7,8 @@ import Question from './Question'
 import AddQuestion from './AddQuestion'
 import Leaderboard from './Leaderboard'
 import Navbar from './Navbar'
+import Login from './Login'
+import PrivateRoute from './PrivateRoute'
 import { handleInitialData } from '../actions/shared'
 import 'primeflex/primeflex.css'
 import 'primereact/resources/themes/saga-blue/theme.css'
@@ -28,18 +30,16 @@ class App extends Component {
           <LoadingBar />
           <div className='container'>
             <Navbar />
-            {this.props.loading === true 
-              ? null
-              : <div className="p-d-flex p-jc-center">
-                  <Switch>
-                    <Route path='/' exact component={Questions} />
-                    <Route path='/questions/:id' component={Question} />
-                    <Route path='/add' component={AddQuestion} />
-                    <Route path='/leaderboard' component={Leaderboard} />
-                    <Route component={PageNotFound} />
-                  </Switch>
-                </div>
-            }
+            <div className="p-d-flex p-jc-center">
+              <Switch>
+                <Route path='/login' component={Login} />
+                <PrivateRoute authed={this.props.authed} path='/' exact component={Questions} />
+                <PrivateRoute authed={this.props.authed} path='/questions/:id' component={Question} />
+                <PrivateRoute authed={this.props.authed} path='/add' component={AddQuestion} />
+                <PrivateRoute authed={this.props.authed} path='/leaderboard' component={Leaderboard} />
+                <Route component={PageNotFound} />
+              </Switch>
+            </div>
           </div>
         </Fragment>
       </Router>
@@ -49,7 +49,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    loading: authedUser === null
+    authed: authedUser !== null,
   }
 }
 
