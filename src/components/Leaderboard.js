@@ -27,12 +27,14 @@ class Leaderboard extends Component {
     return (
       <div className="card">
         { this.props.orderedUsers.map((user) => (
-          <Card style={{ width: '25em', marginTop: '2em' }} 
-                className="ui-card-shadow p-as-center">
+          <Card 
+            key={user.id}
+            style={{ width: '25em', marginTop: '2em' }} 
+            className="ui-card-shadow p-as-center">
             <div className="p-grid nested-grid">
               <div className="p-col-4">
                 <img alt="Avatar" 
-                    style={{ 'max-width': '100%', 'max-height':'100%' }}
+                    style={{ 'maxWidth': '100%', 'maxHeight':'100%' }}
                     src={user.avatarURL} />
               </div>
               <div className="p-col-8">
