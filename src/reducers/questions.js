@@ -12,7 +12,7 @@ export default function questions (state = {}, action) {
 
       return {
         ...state,
-        ...question,
+        [question.id]: question,
       }
     case ADD_ANSWER :
       const { authedUser, qid, answer } = action
