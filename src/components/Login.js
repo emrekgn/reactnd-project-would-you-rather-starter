@@ -60,7 +60,8 @@ class Login extends Component {
     )
 
     if (this.state.toHome === true) {
-      return <Redirect to='/' />
+      const { redirectTo } = this.props
+      return <Redirect to={redirectTo !== null ? redirectTo : '/'} />
     }
 
     return (
@@ -86,10 +87,12 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps ({ users, from }) {
-  console.log('FROM:', from)
+function mapStateToProps ({ users }, props) {
+  const { location } = props
+
   return {
     users: Object.values(users),
+    redirectTo: location !== null ? location.state.from.pathname : null
   }
 }
 
