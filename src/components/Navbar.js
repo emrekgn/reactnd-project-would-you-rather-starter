@@ -64,8 +64,9 @@ const Navbar = (props) => {
     const { dispatch } = props
     
     toastBC.current.clear()
-    // Nullify auther user to mimic logout
+
     dispatch(setAuthedUser(null))
+    handleRedirect('/')
   }
   const getLogo = () => {
     return (
