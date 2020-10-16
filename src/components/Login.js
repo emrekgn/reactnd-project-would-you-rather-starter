@@ -11,7 +11,7 @@ class Login extends Component {
     selectedUser: null,
     toHome: false,
   }
-  selectedUserTemplate(option, props) {
+  selectedUserTemplate = (option, props) => {
     if (option) {
         return (
             <div className="user-option">
@@ -27,7 +27,7 @@ class Login extends Component {
         </span>
     )
   }
-  userOptionTemplate(option) {
+  userOptionTemplate = (option) => {
     return (
         <div className="user-option">
             <img alt={option.name} src={option.avatarURL} />
