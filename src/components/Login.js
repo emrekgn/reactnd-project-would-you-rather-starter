@@ -86,7 +86,8 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, from }) {
+  console.log('FROM:', from)
   return {
     users: Object.values(users),
   }

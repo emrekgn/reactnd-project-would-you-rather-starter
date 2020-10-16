@@ -9,15 +9,12 @@ import Leaderboard from './Leaderboard'
 import Navbar from './Navbar'
 import Login from './Login'
 import PrivateRoute from './PrivateRoute'
+import PageNotFound from './PageNotFound'
 import { handleInitialData } from '../actions/shared'
 import 'primeflex/primeflex.css'
 import 'primereact/resources/themes/saga-blue/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
-
-const PageNotFound = ({ location }) => (
-  <h3>404! This is not the page you're looking for: <code>{location.pathname}</code></h3>
-)
 
 class App extends Component {
   componentDidMount() {
@@ -32,7 +29,7 @@ class App extends Component {
             <Navbar />
             <div className="p-d-flex p-jc-center">
               <Switch>
-                <Route path='/login' component={Login} />
+                <Route path='/login' exact component={Login} />
                 <PrivateRoute authed={this.props.authed} path='/' exact component={Questions} />
                 <PrivateRoute authed={this.props.authed} path='/questions/:id' component={Question} />
                 <PrivateRoute authed={this.props.authed} path='/add' component={AddQuestion} />
