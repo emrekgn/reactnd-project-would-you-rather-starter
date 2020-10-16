@@ -29,7 +29,7 @@ class App extends Component {
             <Navbar />
             <div className="p-d-flex p-jc-center">
               <Switch>
-                <Route path='/login' exact component={Login} />
+                <Route path='/login' component={Login} />
                 <PrivateRoute authed={this.props.authed} path='/' exact component={Questions} />
                 <PrivateRoute authed={this.props.authed} path='/questions/:id' component={Question} />
                 <PrivateRoute authed={this.props.authed} path='/add' component={AddQuestion} />
