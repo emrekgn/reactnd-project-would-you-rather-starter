@@ -45,7 +45,7 @@ class AddQuestion extends Component {
       <Card 
         title="Create New Question" 
         subTitle="Would you rather..."
-        style={{ width: '25rem', marginBottom: '2em' }}
+        style={{ width: '25rem', marginTop: '2em' }}
         footer={footer}>
           <div className="p-grid p-dir-col">
             <InputText 
