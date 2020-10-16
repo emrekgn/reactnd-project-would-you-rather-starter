@@ -58,7 +58,7 @@ const Navbar = (props) => {
                 </div>
             </div>
         </div>
-    ) });
+    ) })
   }
   const handleLogout = () => {
     const { dispatch } = props

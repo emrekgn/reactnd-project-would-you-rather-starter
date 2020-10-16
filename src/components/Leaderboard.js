@@ -21,7 +21,7 @@ class Leaderboard extends Component {
                 <h6 className="p-mb-2 p-badge p-badge-xl p-badge-sucess">{calcScore(user)}</h6>
             </div>
         </div>
-    );
+    )
   }
   render() {
     return (
