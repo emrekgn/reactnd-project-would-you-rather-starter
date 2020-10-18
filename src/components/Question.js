@@ -5,12 +5,14 @@ import { RadioButton } from 'primereact/radiobutton'
 import { formatQuestion, formatDate } from '../utils/helpers'
 import { Button } from 'primereact/button'
 import { withRouter } from 'react-router-dom'
+import PageNotFound from './PageNotFound'
 import { handleAddAnswer } from '../actions/questions'
 
 class Question extends Component {
   state = {
-    answered: this.props.question.optionOne.votes.includes(this.props.authedUser) 
-      || this.props.question.optionTwo.votes.includes(this.props.authedUser),
+    answered: this.props.question 
+      && (this.props.question.optionOne.votes.includes(this.props.authedUser) 
+      || this.props.question.optionTwo.votes.includes(this.props.authedUser)),
     answer: null,
   }
   toQuestionPage = (e, id) => {
@@ -44,6 +46,11 @@ class Question extends Component {
   render() {
     const { question, summary, authedUser } = this.props
     const { answered, answer } = this.state
+
+    if (!question) {
+      // No question found! Question id might be invalid
+      return <PageNotFound />
+    }
 
     const optionOneStats = this.calcStats('optionOne', 'optionTwo')
     const optionTwoStats = this.calcStats('optionTwo', 'optionOne')
@@ -134,9 +141,14 @@ function mapStateToProps ({ authedUser, questions, users }, props) {
    * in a detailed view.
   */
   const summary = props.summary ? props.summary : false
+
+  console.log("Q:", question)
+  console.log("id:", id)
   
   return {
-    question: formatQuestion(question, users[question.author]),
+    question: question 
+      ? formatQuestion(question, users[question.author]) 
+      : null,
     summary,
     authedUser,
   }
