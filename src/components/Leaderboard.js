@@ -47,10 +47,10 @@ class Leaderboard extends Component {
                     </div>
                     <div className="p-col-6">
                       <p className="p-text-nowrap">
-                        {'Answered questions: ' + user.questions.length}
+                        {'Created questions: ' + user.questions.length}
                       </p>
                       <p className="p-text-nowrap">
-                        {'Created questions: ' + Object.keys(user.answers).length}
+                        {'Answered questions: ' + Object.keys(user.answers).length}
                       </p>
                     </div>
                     <div className="p-col-6 p-d-flex p-ai-center">
