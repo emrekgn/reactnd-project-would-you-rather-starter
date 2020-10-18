@@ -92,7 +92,7 @@ function mapStateToProps ({ users }, props) {
 
   return {
     users: Object.values(users),
-    redirectTo: location !== null ? location.state.from.pathname : null
+    redirectTo: location !== null ? location.state.from : null
   }
 }
 
