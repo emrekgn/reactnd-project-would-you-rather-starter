@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { TabView, TabPanel } from 'primereact/tabview'
 import Question from './Question'
 
-class Questions extends Component {
-  render() {
-    return (
-      <div>
-        <TabView>
-          <TabPanel header="Unanswered Questions">
-            { this.props.unansweredQuestions.map((question) => (
-              <Question key={question.id} id={question.id} summary={true} />
-            )) }
-          </TabPanel>
-          <TabPanel header="Answered Questions">
-            { this.props.answeredQuestions.map((question) => (
-              <Question key={question.id} id={question.id} summary={true} />
-            )) }
-          </TabPanel>
-        </TabView>
-      </div>
-    )
-  }
+const Questions = ({answeredQuestions, unansweredQuestions}) => {
+  return (
+    <div>
+      <TabView>
+        <TabPanel header="Unanswered Questions">
+          { unansweredQuestions.map((question) => (
+            <Question key={question.id} id={question.id} summary={true} />
+          )) }
+        </TabPanel>
+        <TabPanel header="Answered Questions">
+          { answeredQuestions.map((question) => (
+            <Question key={question.id} id={question.id} summary={true} />
+          )) }
+        </TabPanel>
+      </TabView>
+    </div>
+  )
 }
 
 function mapStateToProps({ authedUser, questions, users}) {
